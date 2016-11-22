@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+        
+	<bean id="newsService" class="com.dazhuangzhou.service.impl.NewsServiceImpl">
+    	<!-- 
+    		这里的ref=newsVOMapper,就是mybatis-spring自动装配的,我们在applicationContextDao.xml
+    		文件中并没有显示的注册newsVOMapper这个Bean；
+    		当然这个名字为什么就是newsVOMapper呢，默认的会根据Dao接口名称按照驼峰命名习惯来生成这个名称，
+    		如果你想拥有自己的名称风格，那么你可以在Dao接口上通过注解@Component或@Named来更改名称，
+    		例如：
+    		@Component(value="newsVODao")
+			public interface NewsVOMapper {……}
+			或
+			@Named(value="newsVODao")
+			public interface NewsVOMapper {……}
+			
+			这样以后，这里ref就应该是ref="newsVODao" 
+    	-->
+		<property name="newsVOMapper" ref="newsVOMapper" />
+	</bean>
+
+</beans>

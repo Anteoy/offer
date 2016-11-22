@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 
+		result type：
+		<result-types>
+            <result-type name="chain" class="com.opensymphony.xwork2.ActionChainResult"/>
+            <result-type name="dispatcher" class="org.apache.struts2.dispatcher.ServletDispatcherResult" default="true"/>
+            <result-type name="freemarker" class="org.apache.struts2.views.freemarker.FreemarkerResult"/>
+            <result-type name="httpheader" class="org.apache.struts2.dispatcher.HttpHeaderResult"/>
+            <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletRedirectResult"/>
+            <result-type name="redirectAction" class="org.apache.struts2.dispatcher.ServletActionRedirectResult"/>
+            <result-type name="stream" class="org.apache.struts2.dispatcher.StreamResult"/>
+            <result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult"/>
+            <result-type name="xslt" class="org.apache.struts2.views.xslt.XSLTResult"/>
+            <result-type name="plainText" class="org.apache.struts2.dispatcher.PlainTextResult" />
+        </result-types>
+	 -->
+
+	<package name="admin" namespace="/admin" extends="my-truts2">
+		
+		<action name="login">
+			<result>/admin/login.jsp</result>
+		</action>
+
+		<action name="main">
+			<result>/admin/main.jsp</result>
+		</action>
+		
+		<!-- 测试拦截器 -->
+		<action name="testInterceptor" class="adminAction" method="testInterceptor">
+			<interceptor-ref name="adminLoginInterceptorStack"/>
+			<result>/admin/main.jsp</result>
+		</action>
+		
+		<!-- 测试数据访问功能CRUD -->
+		<action name="testCrud" class="adminAction" method="testCrud">
+			<result>/admin/main.jsp</result>
+		</action>
+
+	</package>
+</struts>

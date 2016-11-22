@@ -1,1 +1,1 @@
-# offer
+#offer-a sample of sms 

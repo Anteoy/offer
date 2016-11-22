@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 单个的注册 MapperFactoryBean -->
+	<!-- 
+	 <bean id="managerVOMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dazhuangzhouzhou.dao.ManagerVOMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	-->
+
+	<!-- 利用MyBatis-Spring的自动装配机制：
+		自动从com.dazhuangzhou.dao包中寻找接口装配成MapperFactoryBean
+		有了下面这个配置，那么就不需要像上面那样一个一个的去注册映射器Bean了，大大的减少了工作量
+	-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.dazhuangzhou.dao" />
+	</bean>
+
+</beans>
